@@ -38,6 +38,9 @@ kotlin {
         }
       }
 
+  linuxX64()
+  linuxArm64()
+
   sourceSets {
     commonMain.dependencies { implementation(libs.kotlin.coroutines) }
 
@@ -50,6 +53,6 @@ kotlin {
 
     jvmMain.dependencies { api(libs.jmdns) }
 
-    appleMain.dependencies {}
+    nativeMain.dependencies { implementation(libs.ktor.network) }
   }
 }

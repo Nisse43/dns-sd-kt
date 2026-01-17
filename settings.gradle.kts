@@ -3,6 +3,8 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "DNS-SD"
 
 include(":sample:composeApp")
+include(":sample:androidApp")
+include(":sample:linuxApp")
 
 include(":lib")
 

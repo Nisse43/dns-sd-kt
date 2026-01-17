@@ -6,7 +6,7 @@ plugins {
   kotlin("native.cocoapods")
   alias(libs.plugins.compose)
   alias(libs.plugins.compose.compiler)
-  alias(libs.plugins.android.application)
+  alias(libs.plugins.android.library)
 }
 
 kotlin {
@@ -14,8 +14,10 @@ kotlin {
     freeCompilerArgs.add("-opt-in=kotlin.uuid.ExperimentalUuidApi")
   }
 
-  androidTarget {
-    publishAllLibraryVariants()
+  android {
+    namespace = "com.appstractive.dnssd.composeapp"
+    compileSdk = 36
+    minSdk = 23
     compilerOptions {
       jvmTarget.set(JvmTarget.JVM_1_8)
     }
@@ -68,30 +70,6 @@ kotlin {
 
     iosMain.dependencies {}
   }
-}
-
-android {
-  namespace = "com.appstractive.dnssd"
-  compileSdk = 36
-
-  defaultConfig {
-    minSdk = 23
-    targetSdk = 36
-
-    applicationId = "com.appstractive.dnssd.androidApp"
-    versionCode = 1
-    versionName = "1.0.0"
-  }
-  sourceSets["main"].apply {
-    manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    res.srcDirs("src/androidMain/resources")
-    resources.srcDirs("src/commonMain/resources")
-  }
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-  }
-  buildFeatures { compose = true }
 }
 
 compose.desktop {
